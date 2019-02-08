@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: s4.spring.td2.Td2ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.633 s - in s4.spring.td2.Td2ApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 15.405 s <<< FAILURE! - in s4.spring.td2.Td2ApplicationTests
+contextLoads(s4.spring.td2.Td2ApplicationTests)  Time elapsed: 0.022 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orgasController': Unsatisfied dependency expressed through field 'orgasRepo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orgaRepositoriy': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orgaRepositoriy': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
+Caused by: java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
+
