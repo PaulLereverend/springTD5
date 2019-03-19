@@ -1,0 +1,14 @@
+{{> header}}
+
+<form class="ui form" modelAttribute="utilisateur" method="POST">
+  <div class="field">
+    <label>login</label>
+    <input type="text" path="login" name="login" placeholder="login...">
+  </div>
+  <div class="field">
+    <label>password</label>
+    <input type="password" path="password" name="password" placeholder="password">
+  </div>
+  <button class="ui button" type="submit">Login</button>
+</form>
+{{> footer}}
