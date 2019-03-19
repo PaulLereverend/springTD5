@@ -1,10 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: s4.spring.td2.Td2ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 15.405 s <<< FAILURE! - in s4.spring.td2.Td2ApplicationTests
-contextLoads(s4.spring.td2.Td2ApplicationTests)  Time elapsed: 0.022 s  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.715 s <<< FAILURE! - in s4.spring.td2.Td2ApplicationTests
+contextLoads(s4.spring.td2.Td2ApplicationTests)  Time elapsed: 0.002 s  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'orgasController': Unsatisfied dependency expressed through field 'orgasRepo'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orgaRepositoriy': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orgaRepositoriy': Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
-Caused by: java.lang.IllegalArgumentException: Not a managed type: class s4.spring.td2.entities.Organisation
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
+Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
+Caused by: org.h2.jdbc.JdbcSQLException: 
+La base de données est peut-être en cours dutilisation: {0}. Solutions posibles: fermer toutes les autres connexions; utilisez le mode serveur
+Database may be already in use: {0}. Possible solutions: close all other connection(s); use the server mode [90020-197]
+Caused by: java.lang.IllegalStateException: The file is locked: nio:/Users/paullereverend/git/SpringMVCTD2/data/messagerie.mv.db [1.4.197/7]
 

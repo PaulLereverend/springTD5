@@ -1,4 +1,13 @@
-Z:\JavaWorkspace\springMVC2\src\main\java\s4\spring\td2\controllers\OrgasController.java
-Z:\JavaWorkspace\springMVC2\src\main\java\s4\spring\td2\Td2Application.java
-Z:\JavaWorkspace\springMVC2\src\main\java\s4\spring\td2\entities\Organisation.java
-Z:\JavaWorkspace\springMVC2\src\main\java\s4\spring\td2\repositories\OrgaRepositoriy.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/components/ConfirmButton.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/repositories/OrgaRepositoriy.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/controllers/TestVueController.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/WebConfiguration.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/controllers/TestCompo.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/controllers/RestOrgasController.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/entities/Organisation.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/WebConfig/WebConfig.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/entities/Users.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/entities/Groupe.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/repositories/GroupeRepository.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/Td2Application.java
+/Users/paullereverend/git/SpringMVCTD2/src/main/java/s4/spring/td2/controllers/OrgasController.java
