@@ -1,5 +1,23 @@
 {{> header}}
+<a class="ui button" href="/logout">Déconnexion</a>
 
 <h1>Bonjour {{user.identity}}</h1>
+
+<div class="ui card">
+  <div class="image">
+    <img src="/images/avatar2/large/kristy.png">
+  </div>
+  <div class="content">
+    <a class="header">{{user.identity}}</a>
+    <div class="description">
+    </div>
+  </div>
+  <div class="extra content">
+    <a>
+      <i class="user icon"></i>
+      {{user.email}}
+    </a>
+  </div>
+</div>
 
 {{> footer}}

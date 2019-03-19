@@ -34,12 +34,10 @@ public class ConnexionController {
 	
 	@PostMapping("login")
 	public RedirectView login(Model model, Users utilisateur, HttpSession session) {
-		List<Users> us = usersRepo.findAll();
-		for (Users user : us) {
-			if (utilisateur.getLogin().equals(user.getLogin()) && utilisateur.getPassword().equals(user.getPassword())) {
-				session.setAttribute("connectedUser", user);
-				return new RedirectView("/index");
-			}
+		Users us = usersRepo.findByLogin(utilisateur.getLogin());
+		if (us != null) {
+			session.setAttribute("connectedUser", us);
+			return new RedirectView("/accueil");
 		}
 		return new RedirectView("/login");
 	}
@@ -49,18 +47,27 @@ public class ConnexionController {
 		model.addAttribute("utilisateur", new Users());
 		return "login";
 	}
-	@GetMapping("index")
+	@GetMapping("logout")
+	public RedirectView logout(Model model, HttpSession session) {
+		session.removeAttribute("connectedUser");
+		return new RedirectView("/login");
+	}
+	/*@GetMapping("index")
 	public RedirectView isConnected(Model model, HttpSession session) {
 		if(session.getAttribute("connectedUser") == null) {
 			return new RedirectView("/login");
 		}else {
 			return new RedirectView("/accueil");
 		}
-	}
+	}*/
 	@GetMapping("accueil")
 	public String accueil(Model model, HttpSession session) {
-		model.addAttribute("user", session.getAttribute("connectedUser"));
-		return "accueil";
+			if (isConnected(session)) {
+				model.addAttribute("user", session.getAttribute("connectedUser"));
+				return "accueil";
+			}else {
+				return "logout";
+			}			
 	}
 	@RequestMapping("create")
 	@ResponseBody
@@ -73,5 +80,13 @@ public class ConnexionController {
 
 		usersRepo.save(user);
 		return user + " ajoutée dans la bdd";
+	}
+	
+	public boolean isConnected(HttpSession session) {
+		if(session.getAttribute("connectedUser") != null) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 }
