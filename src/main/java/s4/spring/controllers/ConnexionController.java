@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,15 +32,12 @@ public class ConnexionController {
 	@Autowired
 	private HistoryRepository historyRepo; 
 	
-	private Users connectedUser = null;
-
 	@PostMapping("login")
-	public RedirectView login(Model model, Users utilisateur) {
-		
+	public RedirectView login(Model model, Users utilisateur, HttpSession session) {
 		List<Users> us = usersRepo.findAll();
 		for (Users user : us) {
 			if (utilisateur.getLogin().equals(user.getLogin()) && utilisateur.getPassword().equals(user.getPassword())) {
-				connectedUser = user;
+				session.setAttribute("connectedUser", user);
 				return new RedirectView("/index");
 			}
 		}
@@ -51,16 +50,16 @@ public class ConnexionController {
 		return "login";
 	}
 	@GetMapping("index")
-	public RedirectView isConnected(Model model) {
-		if(connectedUser == null) {
+	public RedirectView isConnected(Model model, HttpSession session) {
+		if(session.getAttribute("connectedUser") == null) {
 			return new RedirectView("/login");
 		}else {
 			return new RedirectView("/accueil");
 		}
 	}
 	@GetMapping("accueil")
-	public String accueil(Model model) {
-		model.addAttribute("user", connectedUser);
+	public String accueil(Model model, HttpSession session) {
+		model.addAttribute("user", session.getAttribute("connectedUser"));
 		return "accueil";
 	}
 	@RequestMapping("create")
