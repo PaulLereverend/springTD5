@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -84,7 +85,7 @@ public class ConnexionController {
 		model.addAttribute("languages", languagesRepo.findAll());
 		return "script/new";
 	}
-	@PostMapping("script/add")
+	@PostMapping("script/submit")
 	public RedirectView ajouter(@ModelAttribute("script") Scripts script, Model model, HttpSession session) {
 		Scripts newScript = new Scripts();
 		copyFrom(script, newScript, session);
@@ -100,6 +101,15 @@ public class ConnexionController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 		dest.setCreation(dateFormat.format(date));
+	}
+	@GetMapping("script/delete/{id}")
+	public RedirectView delete(@PathVariable int id, Scripts script) {
+		Optional<Scripts> opt=scriptsRepo.findById(id);
+		if(opt.isPresent()) {
+			Scripts oldScript = opt.get();
+			scriptsRepo.delete(oldScript);
+		}
+		return new RedirectView("/accueil");
 	}
 	@RequestMapping("create")
 	@ResponseBody

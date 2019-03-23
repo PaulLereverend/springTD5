@@ -28,6 +28,7 @@
     <th>Description</th>
     <th>Content</th>
     <th>Creation date</th>
+    <th>Language</th>
     <th></th>
   </tr></thead>
   <tbody>
@@ -37,13 +38,12 @@
       <td data-label="Name">{{description}}</td>
       <td data-label="Name">{{content}}</td>
       <td data-label="Name">{{creation}}</td>
-<td style="text-align:center"><button class="circular basic ui icon button">
-			<i class="eye icon"></i>
-		</button>
+      <td data-label="Name"><a class="ui red tag label">{{language.name}}</a></td>
+		<td style="text-align:center">
 		<a href="edit/{{id}}"><button class="circular basic ui icon button">
 			<i class="edit icon"></i>
 		</button></a>
-		<a href="delete/{{id}}"><button class="circular basic red ui icon button">
+		<a href="script/delete/{{id}}"><button class="circular basic red ui icon button">
 			<i class="close icon"></i>
 		</button> </a>
 	</td>
