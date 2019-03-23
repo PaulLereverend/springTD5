@@ -28,6 +28,13 @@ public class Scripts {
 	@ManyToOne
 	private Category category;
 	
+	@Override
+	public String toString() {
+		return "Scripts [id=" + id + ", user=" + user + ", language=" + language + ", history=" + history
+				+ ", category=" + category + ", title=" + title + ", description=" + description + ", content="
+				+ content + ", creation=" + creation + "]";
+	}
+
 	private String title;
 	private String description;
 	private String content;

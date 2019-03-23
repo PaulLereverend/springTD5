@@ -20,14 +20,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
+import s4.spring.entities.History;
 import s4.spring.entities.Languages;
 import s4.spring.entities.Scripts;
 import s4.spring.entities.Users;
+import s4.spring.repositories.CategoryRepository;
 import s4.spring.repositories.HistoryRepository;
 import s4.spring.repositories.LanguagesRepository;
 import s4.spring.repositories.ScriptsRepository;
 import s4.spring.repositories.UsersRepository;
-
 
 @Controller
 @RequestMapping("")
@@ -40,6 +41,8 @@ public class ConnexionController {
 	private HistoryRepository historyRepo; 
 	@Autowired
 	private LanguagesRepository languagesRepo; 
+	@Autowired
+	private CategoryRepository categoryRepo; 
 	
 	@PostMapping("login")
 	public RedirectView login(Model model, Users utilisateur, HttpSession session) {
@@ -83,24 +86,58 @@ public class ConnexionController {
 	public String nouveau(Model model) {
 		model.addAttribute("script", new Scripts());
 		model.addAttribute("languages", languagesRepo.findAll());
+		model.addAttribute("categorys", categoryRepo.findAll());
+
+		return "script/new";
+	}
+	@GetMapping("script/{id}")
+	public String edit(@PathVariable int id, Scripts script, Model model) {
+		Optional<Scripts> opt=scriptsRepo.findById(id);
+		if(opt.isPresent()) {
+			Scripts newScript = opt.get();
+			model.addAttribute("script", newScript);
+		}
+		model.addAttribute("languages", languagesRepo.findAll());
+		model.addAttribute("categorys", categoryRepo.findAll());
+		//model.addAttribute("script", script);
 		return "script/new";
 	}
 	@PostMapping("script/submit")
-	public RedirectView ajouter(@ModelAttribute("script") Scripts script, Model model, HttpSession session) {
-		Scripts newScript = new Scripts();
+	public RedirectView ajouter(@ModelAttribute("scripts") Scripts script, Model model, HttpSession session) {
+		System.out.println(script);
+		Optional<Scripts> opt = scriptsRepo.findById(script.getId());
+		Scripts newScript;
+		if(opt.isPresent()) {
+			System.out.println("salut");
+			newScript = opt.get();
+			History hist = new History();
+			hist.setScripts(newScript);
+			hist.setContent(newScript.getContent());
+			hist.setDate(getDate());
+			historyRepo.save(hist);
+		}else {
+			newScript = new Scripts();
+			System.out.println("pas salut");
+		}
 		copyFrom(script, newScript, session);
 		scriptsRepo.save(newScript);
 		return new RedirectView("/accueil");
 	}
+	private String getDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
 	private void copyFrom(Scripts source, Scripts dest, HttpSession session) {
+		dest.setId(source.getId());
 		dest.setTitle(source.getTitle());
 		dest.setUser((Users)session.getAttribute("connectedUser"));
 		dest.setDescription(source.getDescription());
 		dest.setContent(source.getContent());
 		dest.setLanguage(source.getLanguage());
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		dest.setCreation(dateFormat.format(date));
+		dest.setCategory(source.getCategory());
+
+		dest.setCreation(getDate());
 	}
 	@GetMapping("script/delete/{id}")
 	public RedirectView delete(@PathVariable int id, Scripts script) {
