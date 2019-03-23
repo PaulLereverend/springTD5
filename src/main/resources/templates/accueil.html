@@ -19,5 +19,36 @@
     </a>
   </div>
 </div>
-
+<a href="script/new"><button class="ui green secondary button">
+  + Nouveau script
+</button></a>
+<table class="ui stripped table">
+  <thead>
+    <tr><th>Title</th>
+    <th>Description</th>
+    <th>Content</th>
+    <th>Creation date</th>
+    <th></th>
+  </tr></thead>
+  <tbody>
+  {{#scripts}}
+    <tr>
+      <td data-label="Name">{{title}}</td>
+      <td data-label="Name">{{description}}</td>
+      <td data-label="Name">{{content}}</td>
+      <td data-label="Name">{{creation}}</td>
+<td style="text-align:center"><button class="circular basic ui icon button">
+			<i class="eye icon"></i>
+		</button>
+		<a href="edit/{{id}}"><button class="circular basic ui icon button">
+			<i class="edit icon"></i>
+		</button></a>
+		<a href="delete/{{id}}"><button class="circular basic red ui icon button">
+			<i class="close icon"></i>
+		</button> </a>
+	</td>
+	</tr>
+    {{/scripts}}
+  </tbody>
+</table>
 {{> footer}}

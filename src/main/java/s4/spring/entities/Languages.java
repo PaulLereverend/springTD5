@@ -20,4 +20,28 @@ public class Languages {
 	
 	@OneToMany
 	private List<Scripts> scripts;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Scripts> getScripts() {
+		return scripts;
+	}
+
+	public void setScripts(List<Scripts> scripts) {
+		this.scripts = scripts;
+	}
 }

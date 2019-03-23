@@ -1,0 +1,38 @@
+{{> header}}
+<div class="ui icon message" style="margin-top:20px;">
+  <i class="inbox icon"></i>
+  <div class="content">
+    <div class="header">
+      script\new
+    </div>
+    <p>Nouveau script</p>
+  </div>
+</div>
+
+<form class="ui form" method="POST" action="add" modelAttribute="organisation">
+  <div class="field">
+    <label>Title</label>
+    <input type="text" name="title" placeholder="title...">
+  </div>
+  <div class="field">
+    <label>Description</label>
+    <input type="text" name="description" placeholder="description...">
+  </div>
+  <div class="field">
+    <label>Content</label>
+    <textarea type="text" name="content" placeholder="content..."></textarea>
+  </div>
+  <div class="field">
+    <label>Language</label>
+    <select class="ui dropdown" name="language" required>
+    	{{#languages}}
+    	<option value="{{id}}">{{name}}</option>
+    	{{/languages}}
+    </select>
+  <div class="ui buttons">
+  <button class="ui button">Cancel</button>
+  <div class="or"></div>
+  <button class="ui positive button" type="submit">Validate</button>
+</div>
+</form>
+{{> footer}}

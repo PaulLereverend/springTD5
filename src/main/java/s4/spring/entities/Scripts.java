@@ -36,5 +36,77 @@ public class Scripts {
 	public Scripts() {
 		history=new ArrayList<History>();
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Languages getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Languages language) {
+		this.language = language;
+	}
+
+	public List<History> getHistory() {
+		return history;
+	}
+
+	public void setHistory(List<History> history) {
+		this.history = history;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getCreation() {
+		return creation;
+	}
+
+	public void setCreation(String creation) {
+		this.creation = creation;
+	}
 	
 }
